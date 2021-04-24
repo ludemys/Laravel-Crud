@@ -15,44 +15,12 @@ use App\Http\Controllers\NameController;
 |
 */
 
-
-class User
-{
-    public $name;
-    public $age;
-
-    public function __construct($name, $age)
-    {
-        $this->name = $name;
-        $this->age = $age;
-    }
-}
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users/{page?}', [UserController::class, 'index']);
-Route::get('/details', [UserController::class, 'details']);
+Route::get('/users/details/{id}', [UserController::class, 'details'])->name('users.details');
+Route::get('/users/{page?}', [UserController::class, 'index'])->name('users.index');
+Route::get('/redirect/{id}', [UserController::class, 'redirect'])->name('users.redirect');
 
 Route::resource('/names', NameController::class);
-
-
-// Route::get('/users', function () {
-//     return view('user/list', array(
-//         'title' => 'Users list',
-//         'users' => [new User('admin', 45), new User('Luciano', 17), new User('Ricardo', 23)]
-//     ));
-// });
-
-// Route::get('/users/adults', function () {
-
-//     return view('user/adults', array(
-//         'title' => 'Adult users list',
-//         'users' => 
-//     ));
-// });
-
-// Route::get('/generic', function () {
-//     return view('page');
-// });
