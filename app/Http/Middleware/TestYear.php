@@ -16,6 +16,10 @@ class TestYear
      */
     public function handle(Request $request, Closure $next)
     {
+        $year = $request->route('year');
+
+        if (is_null($year) || $year < 2021) return redirect()->route('users.index');
+
         return $next($request);
     }
 }

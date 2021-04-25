@@ -4,11 +4,15 @@
 @section('content')
     <ul>
         @foreach($users as $user)
-            <li><a href="{{ route('users.details', ['id' => $user->id]) }}">{{ $user->name }}</a> | {{ $user->email }}</li>
+            <a href="{{ route('users.details', ['id' => $user->id]) }}">
+                    {{ $user->name }} | {{ $user->email }}
+            </a>
         @endforeach
     </ul>
     
     @if (isset($page))
         <h3>Page {{ $page }}</h3>
     @endif
+    <br>
+    <a href="{{ route('users.create') }}">Create new user</a><br><br>
 @endsection
